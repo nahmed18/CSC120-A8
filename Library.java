@@ -9,12 +9,24 @@ public class Library extends Building implements LibraryRequirements {
 
     /**
      * Constructor for Library set up collection/hastable and call super to set up name, address, floors
+     * @param hasElevator - t/f if there is an elevator 
      */
     public Library(boolean hasElevator) {
       super("ZLibrary", "123 St", 10);
       this.collection = new Hashtable<String, Boolean>();
       this.hasElevator = hasElevator;
       System.out.println("You have built a library: 📖");
+    }
+
+    
+    /**
+     * Overloaded library constructor - makes a default library, no elevator 
+     */
+    public Library() {
+      super("Lame Library", "narnia ave", 2);
+      this.collection = new Hashtable<String, Boolean>();
+      this.hasElevator = false; 
+      System.out.println("You have built the default library");
     }
 
     //Methods 
@@ -26,6 +38,14 @@ public class Library extends Building implements LibraryRequirements {
     public void addTitle(String title) {
       collection.put(title, true);
     }
+
+   
+    /**
+     * Overloaded addTitle method - adds a book, "blank book" that is available
+     */
+    public void addTitle() {
+      collection.put("BLANK BOOK", true); 
+    } 
 
     /**
      * Method to remove book from hastable 
@@ -90,12 +110,19 @@ public class Library extends Building implements LibraryRequirements {
       }
     }
 
+    /**
+     * Overrided showOptions method - adds the methods in library with building methods 
+     */
     @Override
     public void showOptions() {
       super.showOptions();
       System.out.println(" + addTitle(title) \n + removeTitle(title) \n + checkOut(title) \n + returnBook(title) \n + containsTitle(title) \n + isAvailable(title) \n + printCollection()");
     }
 
+    /**
+   * Overrided goToFloor - allows someone to go to any floor using elevator not just adjacent floors 
+   * @param floorNum - the floor they want to go to 
+   */
     @Override
     public void goToFloor(int floorNum) {
       if (hasElevator == true) {
@@ -149,6 +176,12 @@ public class Library extends Building implements LibraryRequirements {
       ZLib.enter();
       ZLib.goToFloor(5);
       ZLib.goToFloor(2);
+
+      //Test default library 
+      Library Default = new Library(); 
+      Default.addTitle(); //test default book added 
+      Default.printCollection();
+
 
     }
 }

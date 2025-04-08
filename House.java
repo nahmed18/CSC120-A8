@@ -19,6 +19,17 @@ public class House extends Building implements HouseRequirements{
     this.hasDiningRoom = hasDiningRoom;
     this.hasElevator = hasElevator;
     System.out.println("You have built a house: 🏠");
+  } 
+
+
+  /**
+   * Overloaded House constructor - creates a dummy house that has no dining room and elevator
+   */
+  public House() {
+    super("Dummy House", "123 st", 1);
+    this.residents = new ArrayList<Student>();
+    this.hasDiningRoom = false;
+    this.hasElevator = false; 
   }
 
   //Acessors:
@@ -49,6 +60,16 @@ public class House extends Building implements HouseRequirements{
     residents.add(s);
   }
 
+ 
+  /**
+   * Overloaded moveIn method - moves in student directly with a string of their name 
+   * @param name - students name 
+   */
+  public void moveIn(String name) {
+    Student s = new Student(name, "0000", 2028); // create a student with default values
+    residents.add(s);
+}
+
   /**
    * Student moves out by removing them from the house 
    * @param s student to be removed 
@@ -68,12 +89,19 @@ public class House extends Building implements HouseRequirements{
     return residents.contains(s);
   }
 
+  /**
+     * Overrided showOptions method - adds the methods in house with building methods 
+     */
   @Override
   public void showOptions() {
     super.showOptions();
     System.out.println(" + hasDiningRoom() \n + nResidents() \n + moveIn(s) \n + moveOut(s) \n + isResident(s)");
   }
 
+  /**
+   * Overrided goToFloor - allows someone to go to any floor using elevator not just adjacent floors 
+   * @param floorNum - the floor they want to go to 
+   */
   @Override
   public void goToFloor(int floorNum) {
     if (hasElevator == true) {
@@ -115,6 +143,12 @@ public class House extends Building implements HouseRequirements{
 
     NazHouse.enter();
     NazHouse.goToFloor(3);
+
+    NazHouse.moveIn("Ali");
+
+    System.out.println(NazHouse.residents);
+
+    
 
   }
 

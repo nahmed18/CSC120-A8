@@ -45,6 +45,34 @@ public class CampusMap {
         myMap.addBuilding(new Building("Ford Hall", "100 Green Street Northampton, MA 01063", 4));
         myMap.addBuilding(new Building("Bass Hall", "4 Tyler Court Northampton, MA 01063", 4));
         System.out.println(myMap);
+
+        //add 10 smith buildings:
+
+        //add house - test default overloaded constructor 
+        House Ziskind = new House();
+        myMap.addBuilding(Ziskind);
+
+        //add library - test default overloaded constructor 
+        Library Neilson = new Library(); 
+        myMap.addBuilding(Neilson);
+
+        //add cafe - test default overloaded constructor 
+        Cafe CC = new Cafe(); 
+        myMap.addBuilding(CC);
+
+        //other buildings
+        myMap.addBuilding(new Building("Alumnae Gymnasium", "83 Green St, Northampton, MA 01063", 3));
+        myMap.addBuilding(new Building("McConell Hall", "01063, 2 Tyler Ct, Northampton, MA 01060", 4 ));
+        myMap.addBuilding(new Building("Seelye Hall", " 2 Seelye Dr #1, Northampton, MA 01060", 4));
+        myMap.addBuilding(new Building("Hatfield Hall", "3 Neilson Drive, Northampton, MA 01063", 3));
+        myMap.addBuilding(new Building("Campus Center", "100 Elm St, Northampton, MA 01063", 4));
+        myMap.addBuilding(new Building("Ziskind House", "1 Henshaw Ave, Northampton, MA 01063", 4));
+        myMap.addBuilding(new Building("Cutter House", "10 Prospect St, Northampton, MA 01060", 4));
+        myMap.addBuilding(new Building("Duckett House", "41 Elm St, Northampton, MA 01060", 4));
+        myMap.addBuilding(new Building("Ainsworth Gym", "102 Lower College Lane, Northampton, MA 01063", 4));
+
+        System.out.println(myMap);
+        
     }
     
 }
