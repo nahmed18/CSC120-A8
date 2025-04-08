@@ -5,13 +5,15 @@ public class Library extends Building implements LibraryRequirements {
 
     //Attribute 
     private Hashtable<String, Boolean> collection; 
+    private boolean hasElevator;
 
     /**
      * Constructor for Library set up collection/hastable and call super to set up name, address, floors
      */
-    public Library() {
+    public Library(boolean hasElevator) {
       super("ZLibrary", "123 St", 10);
       this.collection = new Hashtable<String, Boolean>();
+      this.hasElevator = hasElevator;
       System.out.println("You have built a library: 📖");
     }
 
@@ -87,10 +89,25 @@ public class Library extends Building implements LibraryRequirements {
         }
       }
     }
+
+    @Override
+    public void showOptions() {
+      super.showOptions();
+      System.out.println(" + addTitle(title) \n + removeTitle(title) \n + checkOut(title) \n + returnBook(title) \n + containsTitle(title) \n + isAvailable(title) \n + printCollection()");
+    }
+
+    @Override
+    public void goToFloor(int floorNum) {
+      if (hasElevator == true) {
+        super.goToFloor(floorNum);
+      } else {
+        System.out.println("There is no elevator use the stairs");
+      }
+    }
     
   
     public static void main(String[] args) {
-      Library ZLib = new Library(); //create new library 
+      Library ZLib = new Library(false); //create new library 
 
       //create books 
       String b1 = "The Kite Runner";
@@ -125,6 +142,13 @@ public class Library extends Building implements LibraryRequirements {
       System.out.println(ZLib.containsTitle(b3));
       System.out.println(ZLib.containsTitle(b2));
       System.out.println(ZLib.isAvailable(b3));
+
+      System.out.println("test override show options");
+      ZLib.showOptions();
+
+      ZLib.enter();
+      ZLib.goToFloor(5);
+      ZLib.goToFloor(2);
 
     }
 }

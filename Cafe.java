@@ -56,6 +56,12 @@ public class Cafe extends Building implements CafeRequirements {
         this.nCups += nCups; 
     }
 
+    @Override
+    public void showOptions() {
+        super.showOptions();
+        System.out.println(" + sellCoffee(size, nSugarpackets, nCreams)");
+    }
+
     
     
     public static void main(String[] args) {
@@ -70,5 +76,8 @@ public class Cafe extends Building implements CafeRequirements {
         System.out.println(Qawah.nCoffeeOunces);
         System.out.println(Qawah.nSugarPackets);
         System.out.println(Qawah.nCreams);
+
+        System.out.println("override showOptions");
+        Qawah.showOptions();
     }
 }
