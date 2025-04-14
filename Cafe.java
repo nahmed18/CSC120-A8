@@ -8,53 +8,36 @@ public class Cafe extends Building implements CafeRequirements {
 
     /**
      * Constructor for Cafe sets up coffee oz, sugar, cream, and cups
+     * @param name - name of the cafe 
+     * @param address - the address of the cafe 
+     * @param nFloors - the # of floors in the cafe 
      * @param nCoffeeOunces - # of oz coffee
      * @param nSugarPackets - # of sugar packets
      * @param nCreams - # of splashes of cream
      * @param nCups - # of cups
      */
-    public Cafe(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups) {
-        super("Qawah House", "Yemeni St", 2);
+    public Cafe(String name, String address, int nFloors, int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups) {
+        super(name, address, nFloors);
         this.nCoffeeOunces = nCoffeeOunces; 
         this.nSugarPackets = nSugarPackets; 
         this.nCreams = nCreams; 
         this.nCups = nCups;  
         System.out.println("You have built a cafe: ☕");
     }
-
  
     /**
      * Overloaded Cafe - default cafe created, set # of each inventory  
+     * @param name - the name of this cafe 
+     * @param address - the address of the cafe 
      */
-    public Cafe () {
-        super("Boring café", "idk st", 2);
-        this.nCoffeeOunces = 10;
-        this.nSugarPackets = 5; 
-        this.nCreams = 5;
-        this.nCups = 10;
+    public Cafe (String name, String address) {
+        super(name, address, 2);
+        this.nCoffeeOunces = 60;
+        this.nSugarPackets = 40; 
+        this.nCreams = 40;
+        this.nCups = 50;
         System.out.println("You have built a default cafe.");
     }
-
-    /**
-     * Overloaded Cafe constructor - completely custom 
-     * @param name - name of the cafe
-     * @param address - address of the cafe
-     * @param nFloors - # of floors 
-     * @param nCoffeeOunces - # of coffe oz
-     * @param nSugarPackets # of sugar packets 
-     * @param nCreams - # of creams 
-     * @param nCups- # of cups 
-     */
-    public Cafe (String name, String address, int nFloors, int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups) {
-        super(name, address, nFloors); 
-        this.nCoffeeOunces = nCoffeeOunces; 
-        this.nSugarPackets = nSugarPackets; 
-        this.nCreams = nCreams; 
-        this.nCups = nCups;  
-        System.out.println("You have built a custom cafe");
-    }
-
-
 
     //Methods 
 
@@ -76,6 +59,16 @@ public class Cafe extends Building implements CafeRequirements {
         this.nCreams -= nCreams; 
     }
 
+    /**
+     * Overloaded sellCoffee method - sells set amount of the inventory a day 
+     */
+    public void sellCoffee() {
+        this.nCoffeeOunces -= 60; 
+        this.nSugarPackets -= 40; 
+        this.nCreams -= 40; 
+    }
+
+    
     /**
      * Restock the inventory in case it runs out by adding more 
      * @param nCoffeeOunces - # of oz coffee
@@ -121,9 +114,8 @@ public class Cafe extends Building implements CafeRequirements {
     }
 
     
-    
     public static void main(String[] args) {
-        Cafe Qawah = new Cafe(10, 5, 5, 10); //create a new cafe 
+        Cafe Qawah = new Cafe("Qawah", "astoria", 2,10, 5, 5, 10); //create a new cafe 
 
         Qawah.sellCoffee(3, 4, 4); //test if it subtracts from inventory properly 
         System.out.println(Qawah.nCoffeeOunces);
@@ -145,11 +137,12 @@ public class Cafe extends Building implements CafeRequirements {
         System.out.println(Qawah.activeFloor);
 
         //test overloaded constructor default 
-        Cafe Default = new Cafe(); 
+        Cafe Default = new Cafe("Default", "idk st"); 
         System.out.println(Default);
-
-        //test completely custom cafe 
-        Cafe Custom = new Cafe("OG CAFE", "555 ST", 4, 10, 10, 10, 10);
-        System.out.println(Custom);
+        Default.sellCoffee(); //overloaded sell method 
+        System.out.println(Default.nCoffeeOunces);
+        System.out.println(Default.nCreams);
+        System.out.println(Default.nSugarPackets);
+        
     }
 }

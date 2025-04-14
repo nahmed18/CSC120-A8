@@ -5,28 +5,32 @@ public class House extends Building implements HouseRequirements{
 
   //Attributes
   private ArrayList<Student> residents; 
-  private boolean hasDiningRoom;
+  private boolean hasDiningRoom; 
   private boolean hasElevator;
 
   /**
    * Constructor for House sets up array list and checks if there's a dining room
+   * @param name - name of the house 
+   * @param address - the address of the house 
+   * @param nFloors - the # of floors in the house 
    * @param hasDiningRoom - takes in a boolean t/f if there is a dining room
    * @param hasElevator - takes in a boolean t/f if there is an elevator 
    */
-  public House(boolean hasDiningRoom, boolean hasElevator) {
-    super("Ziskind", "elm st", 5);
+  public House(String name, String address, int nFloors, boolean hasDiningRoom, boolean hasElevator) {
+    super(name, address, nFloors);
     this.residents = new ArrayList<Student>();
     this.hasDiningRoom = hasDiningRoom;
     this.hasElevator = hasElevator;
     System.out.println("You have built a house: 🏠");
   } 
 
-
   /**
    * Overloaded House constructor - creates a dummy house that has no dining room and elevator
+   * @param name - the name of the house
+   * @param address - the address of the house 
    */
-  public House() {
-    super("Dummy House", "123 st", 1);
+  public House(String name, String address) {
+    super(name, address, 3);
     this.residents = new ArrayList<Student>();
     this.hasDiningRoom = false;
     this.hasElevator = false; 
@@ -62,13 +66,12 @@ public class House extends Building implements HouseRequirements{
 
  
   /**
-   * Overloaded moveIn method - moves in student directly with a string of their name 
-   * @param name - students name 
+   * Overloaded moveIn method - moves in a default student with a string of their name 
+   * @param students - arraylist of students to be added to the house 
    */
-  public void moveIn(String name) {
-    Student s = new Student(name, "0000", 2028); // create a student with default values
-    residents.add(s);
-}
+  public void moveIn(ArrayList<Student> students) {
+    residents.addAll(students); // Adds all students at once
+  }
 
   /**
    * Student moves out by removing them from the house 
@@ -113,7 +116,7 @@ public class House extends Building implements HouseRequirements{
 
 
   public static void main(String[] args) {
-    House NazHouse = new House(true, true);
+    House NazHouse = new House("NazHouse", "31 st", 5, true, true);
 
     //create students 
     Student Ayesha = new Student("Ayesha", "1234", 2028);
@@ -144,12 +147,19 @@ public class House extends Building implements HouseRequirements{
     NazHouse.enter();
     NazHouse.goToFloor(3);
 
-    NazHouse.moveIn("Ali");
 
-    System.out.println(NazHouse.residents);
+    House Default = new House("Default", "lol st");
 
-    
+    ArrayList<Student> group = new ArrayList<>(); 
+    group.add(Ayesha);
+    group.add(Lily);
+    group.add(JJ);
+
+    Default.moveIn(group);
+    Default.enter();
+    Default.goToFloor(4);
+
+    System.out.println(Default.nResidents());
 
   }
-
 }

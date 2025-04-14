@@ -1,18 +1,22 @@
 import java.util.Hashtable; 
+import java.util.ArrayList;
 
 /* This is a stub for the Library class */
 public class Library extends Building implements LibraryRequirements {
 
-    //Attribute 
+    //Attributes 
     private Hashtable<String, Boolean> collection; 
     private boolean hasElevator;
 
     /**
      * Constructor for Library set up collection/hastable and call super to set up name, address, floors
+     * @param name - name of the library 
+     * @param address - the address of the library 
+     * @param nFloors - the # of floors in the library   
      * @param hasElevator - t/f if there is an elevator 
      */
-    public Library(boolean hasElevator) {
-      super("ZLibrary", "123 St", 10);
+    public Library(String name, String address, int nFloors, boolean hasElevator) {
+      super(name, address, nFloors);
       this.collection = new Hashtable<String, Boolean>();
       this.hasElevator = hasElevator;
       System.out.println("You have built a library: 📖");
@@ -21,11 +25,13 @@ public class Library extends Building implements LibraryRequirements {
     
     /**
      * Overloaded library constructor - makes a default library, no elevator 
+     * @param name - name of the library 
+     * @param address - address of the library 
      */
-    public Library() {
-      super("Lame Library", "narnia ave", 2);
+    public Library(String name, String address) {
+      super(name, address, 5);
       this.collection = new Hashtable<String, Boolean>();
-      this.hasElevator = false; 
+      this.hasElevator = true; 
       System.out.println("You have built the default library");
     }
 
@@ -39,12 +45,18 @@ public class Library extends Building implements LibraryRequirements {
       collection.put(title, true);
     }
 
-   
-    /**
-     * Overloaded addTitle method - adds a book, "blank book" that is available
-     */
-    public void addTitle() {
-      collection.put("BLANK BOOK", true); 
+   /**
+    * Overloaded - addTitles method allows you to add multiple titles to the collecion 
+    * @param titles - the arraylist of titles to be added 
+    */
+    public void addTitle(ArrayList<String>titles) {
+      for (String title : titles) {
+        try {
+          addTitle(title);
+        } catch (Exception e) {
+          System.out.println(e.getMessage());
+        }
+      }
     } 
 
     /**
@@ -76,6 +88,7 @@ public class Library extends Building implements LibraryRequirements {
     /**
      * Check if library contains a book 
      * @param title - the name of the book asked about 
+     * @return - t/f if the name of the book is in the collection 
      */
     public boolean containsTitle(String title) {
       return collection.containsKey(title);
@@ -84,6 +97,7 @@ public class Library extends Building implements LibraryRequirements {
     /**
      * Check if the book is available i.e. not current checked out 
      * @param title - the name of the book 
+     * @return - t/f if the name of the book is in the collection and if it is available 
      */
     public boolean isAvailable(String title) {
       return collection.containsKey(title) && collection.get(title) == true;
@@ -134,54 +148,58 @@ public class Library extends Building implements LibraryRequirements {
     
   
     public static void main(String[] args) {
-      Library ZLib = new Library(false); //create new library 
+      Library zLib = new Library("zLib", "narnia st", 100, false); //create new library 
 
       //create books 
       String b1 = "The Kite Runner";
       String b2 = "Divergent";
       String b3 = "Hunger Games";
 
-      ZLib.printCollection(); //empty collection
+      zLib.printCollection(); //empty collection
 
       //add books 
-      ZLib.addTitle(b1);
-      ZLib.addTitle(b2);
-      ZLib.addTitle(b3);
+      zLib.addTitle(b1);
+      zLib.addTitle(b2);
+      zLib.addTitle(b3);
 
-      ZLib.printCollection();
+      zLib.printCollection();
 
       //remove books 
-      ZLib.removeTitle(b1);
-      ZLib.removeTitle(b2);
+      zLib.removeTitle(b1);
+      zLib.removeTitle(b2);
 
-      ZLib.printCollection();
+      zLib.printCollection();
 
-      ZLib.checkOut(b3); //check out 
-      ZLib.printCollection();
+      zLib.checkOut(b3); //check out 
+      zLib.printCollection();
 
-      ZLib.addTitle(b1); //add title to ensure b3 is still checked out 
-      ZLib.printCollection();
+      zLib.addTitle(b1); //add title to ensure b3 is still checked out 
+      zLib.printCollection();
 
-      ZLib.returnBook(b3); //return book 
-      ZLib.printCollection();
+      zLib.returnBook(b3); //return book 
+      zLib.printCollection();
 
       //check if it returns t/f accurately 
-      System.out.println(ZLib.containsTitle(b3));
-      System.out.println(ZLib.containsTitle(b2));
-      System.out.println(ZLib.isAvailable(b3));
+      System.out.println(zLib.containsTitle(b3));
+      System.out.println(zLib.containsTitle(b2));
+      System.out.println(zLib.isAvailable(b3));
 
       System.out.println("test override show options");
-      ZLib.showOptions();
+      zLib.showOptions();
 
-      ZLib.enter();
-      ZLib.goToFloor(5);
-      ZLib.goToFloor(2);
+      zLib.enter();
+      zLib.goToFloor(5);
+      zLib.goToFloor(2);
 
       //Test default library 
-      Library Default = new Library(); 
-      Default.addTitle(); //test default book added 
+      Library Default = new Library("Default", "narnia ave"); 
+
+      ArrayList<String> booksToAdd = new ArrayList<>();
+        //booksToAdd.add("The Great Gatsby");
+        //booksToAdd.add("To Kill a Mockingbird");
+       // booksToAdd.add("1984");
+
+      Default.addTitle(booksToAdd); //test arraylist added
       Default.printCollection();
-
-
     }
 }

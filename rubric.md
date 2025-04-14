@@ -10,7 +10,7 @@ Listed below are various aspects of the assignment.  When you turn in your work,
 
 ## Assignment Points:
 
-_____ 1 pt: The `House`, `Library`, and `Cafe` classes all `extend` the modified `Building` class.
+__**YES**___ 1 pt: The `House`, `Library`, and `Cafe` classes all `extend` the modified `Building` class.
 
 ### Level 1: Method `Overrides` (4 pts)
 
@@ -40,22 +40,22 @@ __**YES**___ 1 pt: The `CampusMap` includes at least one instance of each class:
 
 ## General Items:
 
-_____ 4 pts: Programs compile without errors or warnings
+__**YES**___ 4 pts: Programs compile without errors or warnings
 
-_____ 2 pts: Executes fully & consistently without crashing (exception/freeze)
+__**YES**___ 2 pts: Executes fully & consistently without crashing (exception/freeze)
 
-_____ 2 pt: Complies with style guidelines (missing items 1 pt each):
+___**YES**__ 2 pt: Complies with style guidelines (missing items 1 pt each):
 
-      _____ Classes & class members all have Javadoc header comments
+      ___**YES**__ Classes & class members all have Javadoc header comments
 
-      _____ Clear and consistent indentation of bracketed sections
+      __**YES**___ Clear and consistent indentation of bracketed sections
 
-      _____ Adheres to Java conventions on naming & capitalization
+      __**YES**___ Adheres to Java conventions on naming & capitalization
 
-      _____ Methods & variables all have clear and accurate names
+      ___**YES**__ Methods & variables all have clear and accurate names
 
-      _____ Methods avoid confusing side effects
+      ___**YES**__ Methods avoid confusing side effects
 
-_____ 1 pt: All required files included with submission (including completed `rubric.md` file)
+___**YES**__ 1 pt: All required files included with submission (including completed `rubric.md` file)
 
-_____ 1 pt: `reflection.md` contains your reflection on the assignment
+___**YES**__ 1 pt: `reflection.md` contains your reflection on the assignment

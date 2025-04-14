@@ -49,15 +49,15 @@ public class CampusMap {
         //add 10 smith buildings:
 
         //add house - test default overloaded constructor 
-        House Ziskind = new House();
+        House Ziskind = new House("Bland House", "nothing st");
         myMap.addBuilding(Ziskind);
 
         //add library - test default overloaded constructor 
-        Library Neilson = new Library(); 
+        Library Neilson = new Library("Blank Library", "open st"); 
         myMap.addBuilding(Neilson);
 
         //add cafe - test default overloaded constructor 
-        Cafe CC = new Cafe(); 
+        Cafe CC = new Cafe("Bestie Cafe", "dubai st"); 
         myMap.addBuilding(CC);
 
         //other buildings
