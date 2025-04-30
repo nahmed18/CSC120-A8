@@ -30,7 +30,7 @@ public class Cafe extends Building implements CafeRequirements {
      * @param name - the name of this cafe 
      * @param address - the address of the cafe 
      */
-    public Cafe (String name, String address) {
+    public Cafe(String name, String address) {
         super(name, address, 2);
         this.nCoffeeOunces = 60;
         this.nSugarPackets = 40; 
@@ -105,12 +105,11 @@ public class Cafe extends Building implements CafeRequirements {
             throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
         }
         if (floorNum > 1) {
-            System.out.println("Only employees are permitted beyond the 1st floor.");
-            this.activeFloor = 1; 
-        } else {
-            System.out.println("You are now on floor #" + floorNum + " of " + this.name);
-            this.activeFloor = floorNum;
-        }
+            throw new RuntimeException("Only employees are permitted beyond the 1st floor.");
+        } 
+
+        System.out.println("You are now on floor #" + floorNum + " of " + this.name);
+        this.activeFloor = floorNum; 
     }
 
     
@@ -137,12 +136,12 @@ public class Cafe extends Building implements CafeRequirements {
         System.out.println(Qawah.activeFloor);
 
         //test overloaded constructor default 
-        Cafe Default = new Cafe("Default", "idk st"); 
-        System.out.println(Default);
-        Default.sellCoffee(); //overloaded sell method 
-        System.out.println(Default.nCoffeeOunces);
-        System.out.println(Default.nCreams);
-        System.out.println(Default.nSugarPackets);
+        Cafe defaultCafe = new Cafe("Default", "idk st"); 
+        System.out.println(defaultCafe);
+        defaultCafe.sellCoffee(); //overloaded sell method 
+        System.out.println(defaultCafe.nCoffeeOunces);
+        System.out.println(defaultCafe.nCreams);
+        System.out.println(defaultCafe.nSugarPackets);
         
     }
 }

@@ -107,12 +107,16 @@ public class House extends Building implements HouseRequirements{
    */
   @Override
   public void goToFloor(int floorNum) {
-    if (hasElevator == true) {
-      super.goToFloor(floorNum); 
-    } else {
-      System.out.println("There is no elevator use the stairs");
+      if (hasElevator) {
+        super.goToFloor(floorNum); 
+      } else {
+        if (Math.abs(floorNum - this.activeFloor) == 1) {
+          super.goToFloor(floorNum);
+        } else {
+          throw new RuntimeException("There is no elevator use the stairs.");
+        }
+      }
     }
-  }
 
 
   public static void main(String[] args) {
@@ -148,18 +152,18 @@ public class House extends Building implements HouseRequirements{
     NazHouse.goToFloor(3);
 
 
-    House Default = new House("Default", "lol st");
+    House defaultHouse = new House("Default", "lol st", 3, true, true);
 
     ArrayList<Student> group = new ArrayList<>(); 
     group.add(Ayesha);
     group.add(Lily);
     group.add(JJ);
 
-    Default.moveIn(group);
-    Default.enter();
-    Default.goToFloor(4);
+    defaultHouse.moveIn(group);
+    defaultHouse.enter();
+    defaultHouse.goToFloor(3);
 
-    System.out.println(Default.nResidents());
+    System.out.println(defaultHouse.nResidents());
 
   }
 }

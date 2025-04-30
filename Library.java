@@ -139,7 +139,7 @@ public class Library extends Building implements LibraryRequirements {
    */
     @Override
     public void goToFloor(int floorNum) {
-      if (hasElevator == true) {
+      if (hasElevator) {
         super.goToFloor(floorNum);
       } else {
         System.out.println("There is no elevator use the stairs");
@@ -192,14 +192,14 @@ public class Library extends Building implements LibraryRequirements {
       zLib.goToFloor(2);
 
       //Test default library 
-      Library Default = new Library("Default", "narnia ave"); 
+      Library defaultLibrary = new Library("Default", "narnia ave"); 
 
       ArrayList<String> booksToAdd = new ArrayList<>();
         //booksToAdd.add("The Great Gatsby");
         //booksToAdd.add("To Kill a Mockingbird");
        // booksToAdd.add("1984");
 
-      Default.addTitle(booksToAdd); //test arraylist added
-      Default.printCollection();
+       defaultLibrary.addTitle(booksToAdd); //test arraylist added
+       defaultLibrary.printCollection();
     }
 }
